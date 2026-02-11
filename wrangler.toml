@@ -1,0 +1,8 @@
+# Cloudflare Pages configuration
+name = "rcfc-courses-export"
+compatibility_date = "2024-01-01"
+
+# KV Namespace binding for storing OAuth tokens
+[[kv_namespaces]]
+binding = "TOKENS"
+id = "41d78b07b5fe488ba3107f7eba73c259"
