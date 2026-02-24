@@ -73,11 +73,11 @@ export async function onRequest(context) {
       if (allProducts.length > 2000) break
     }
 
-    // Filter products that have 'Training' or 'Community' tags
+    // Filter products that have the 'Community' tag
     // Tags in Shopify are comma-separated strings
     const courseProducts = allProducts.filter(product => {
-      const tags = product.tags ? product.tags.toLowerCase() : ''
-      return tags.includes('training') || tags.includes('community')
+      const tags = product.tags ? product.tags.split(',').map(t => t.trim().toLowerCase()) : []
+      return tags.includes('community')
     })
     
     // Return simplified product list, sorted alphabetically
