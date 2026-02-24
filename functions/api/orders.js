@@ -103,6 +103,14 @@ export async function onRequest(context) {
           }
         }
 
+        // Only include genuine course bookings - must have at least a child name or child age
+        // This excludes kit items and POS custom sales that have unrelated properties
+        const isBooking = !!(
+          props["Child's Name"] || props["Child Name"] || props["child_name"] ||
+          props["Child's Age"] || props["Child Age"] || props["child_age"]
+        )
+        if (!isBooking) continue
+
         processedOrders.push({
           orderNumber: order.name,
           orderDate: new Date(order.created_at).toLocaleDateString('en-GB'),
